@@ -1,0 +1,23 @@
+{
+    "singleQuote": false,
+    "trailingComma": "all",
+    "tabWidth": 4,
+    "editor.formatOnSave": true,
+    "printWidth": 88,
+    "overrides": [
+        {
+            "files": "*.yml",
+            "options": {
+                "tabWidth": 2,
+                "singleQuote": true
+            }
+        },
+        {
+            "files": "tsconfig.json",
+            "options": {
+                "tabWidth": 2,
+                "singleQuote": true
+            }
+        }
+    ]
+}
