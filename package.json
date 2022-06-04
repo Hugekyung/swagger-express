@@ -5,11 +5,13 @@
     "license": "MIT",
     "scripts": {
         "start:dev": "ts-node-dev --respawn --transpile-only ./src/app.ts",
+        "prestart:dev": "node ./swagger.js",
         "api-docs": "swagger-cli bundle ./src/swagger/openapi.yaml --outfile ./swagger/swagger.yaml --type yaml",
         "predev": "yarn api-docs"
     },
     "dependencies": {
         "express": "^4.18.1",
+        "swagger-autogen": "^2.21.2",
         "swagger-cli": "^4.0.4",
         "swagger-ui-express": "^4.4.0",
         "yamljs": "^0.3.0"

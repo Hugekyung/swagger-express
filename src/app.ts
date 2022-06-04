@@ -1,15 +1,16 @@
 import swaggerUi from "swagger-ui-express";
-import YAML from "yamljs";
+import swaggerFile from "../swagger-output.json";
+// import YAML from "yamljs";
 import express, { Request, Response } from "express";
 import { UserInfo } from "./dto/user.dto";
 import path from "path";
 
 const app = express();
-const swaggerSpec = YAML.load(path.join(__dirname, "../swagger/swagger.yaml"));
+// const swaggerSpec = YAML.load(path.join(__dirname, "../swagger/swagger.yaml"));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 // * api
 app.get("/", (req: Request, res: Response) => {
