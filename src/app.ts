@@ -5,11 +5,11 @@ import { UserInfo } from "./dto/user.dto";
 import path from "path";
 
 const app = express();
-const swaggerSpec = YAML.load(path.join(__dirname, "./swagger.yaml"));
+const swaggerSpec = YAML.load(path.join(__dirname, "../swagger/swagger.yaml"));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/test-api", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // * api
 app.get("/", (req: Request, res: Response) => {

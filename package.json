@@ -4,8 +4,9 @@
     "main": "index.js",
     "license": "MIT",
     "scripts": {
-        "start:dev": "ts-node-dev --respawn --transpile-only app.ts",
-        "api-docs": "swagger-cli bundle ./src/swagger/openapi.yaml --outfile ./swagger.yaml --type yaml"
+        "start:dev": "ts-node-dev --respawn --transpile-only ./src/app.ts",
+        "api-docs": "swagger-cli bundle ./src/swagger/openapi.yaml --outfile ./swagger/swagger.yaml --type yaml",
+        "predev": "yarn api-docs"
     },
     "dependencies": {
         "express": "^4.18.1",
