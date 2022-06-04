@@ -1,4 +1,7 @@
+import swaggerUi from "swagger-ui-express";
+import YAML from "yamljs";
 import express, { Request, Response } from "express";
+import { UserInfo } from "./dto/user.dto";
 
 const app = express();
 
@@ -10,14 +13,14 @@ app.get("/", (req: Request, res: Response) => {
     res.json({ status: 200, message: "Main Page!" });
 });
 
-const userInfos = [];
+const userInfos: UserInfo[] = [];
 app.post("/auth", (req: Request, res: Response) => {
-    const userInfo = req.params;
-    if (userInfos.find((elem) => elem.name === userInfo.username)) {
+    const { username, password } = req.params;
+    if (userInfos.find((elem) => elem.username === username)) {
         console.log("username is already in use!");
     }
 
-    userInfos.push(userInfo);
+    userInfos.push({ username, password });
     res.json({ status: 201, message: "Create User Successfully!" });
 });
 

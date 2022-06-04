@@ -4,7 +4,8 @@
     "main": "index.js",
     "license": "MIT",
     "scripts": {
-        "start:dev": "ts-node-dev --respawn --transpile-only app.ts"
+        "start:dev": "ts-node-dev --respawn --transpile-only app.ts",
+        "api-docs": "swagger-cli bundle ./src/swagger/openapi.yaml --outfile ./swagger.yaml --type yaml"
     },
     "dependencies": {
         "express": "^4.18.1",

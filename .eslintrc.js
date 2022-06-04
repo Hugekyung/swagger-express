@@ -9,13 +9,14 @@ module.exports = {
     extends: [
         "plugin:@typescript-eslint/recommended",
         "plugin:prettier/recommended",
+        "@typescript-eslint/parser",
     ],
     root: true,
     env: {
         node: true,
         jest: true,
     },
-    ignorePatterns: [".eslintrc.js"],
+    ignorePatterns: [".eslintrc.js", "node_modules/", "dist/"],
     rules: {
         "prettier/prettier": ["error", {}, { endOfLine: "auto" }],
         "@typescript-eslint/interface-name-prefix": "off",
