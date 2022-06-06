@@ -3,7 +3,7 @@ import swaggerFile from "../swagger-output.json";
 // import YAML from "yamljs";
 import express, { Request, Response } from "express";
 import { UserInfo } from "./dto/user.dto";
-import path from "path";
+// import path from "path";
 
 const app = express();
 // const swaggerSpec = YAML.load(path.join(__dirname, "../swagger/swagger.yaml"));

@@ -12,6 +12,6 @@
     "strict": true,
     "skipLibCheck": true
   },
-  "include": ["src/**/*", "src/app.ts", "__tests__", "swagger.js"],
+  "include": ["src/**/*", "src/app.ts", "__tests__"],
   "exclude": ["node_modules", "dist/"]
 }
