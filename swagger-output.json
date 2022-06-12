@@ -10,10 +10,23 @@
       "url": "http://localhost:3030/"
     }
   ],
+  "tags": [
+    {
+      "name": "auth",
+      "description": "auth 경로 엔드포인트"
+    },
+    {
+      "name": "post",
+      "description": "post 경로 엔드포인트"
+    }
+  ],
   "paths": {
     "/": {
       "get": {
-        "description": "",
+        "tags": [
+          "post"
+        ],
+        "description": "포스트 메인페이지 엔드포인트",
         "parameters": [],
         "responses": {
           "200": {
@@ -22,20 +35,188 @@
         }
       }
     },
-    "/auth": {
-      "post": {
-        "description": "",
+    "/auth/": {
+      "get": {
+        "tags": [
+          "auth"
+        ],
+        "description": "유저 메인페이지 엔드포인트",
         "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
+          }
+        }
+      }
+    },
+    "/auth/sign-in": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "description": "유저 회원가입 엔드포인트",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "유저 정보",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/AddUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "회원가입에 성공했습니다!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "example": "any"
+                  },
+                  "password": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/userList": {
+      "get": {
+        "tags": [
+          "auth"
+        ],
+        "description": "유저 리스트 조회 엔드포인트",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/post/": {
+      "get": {
+        "tags": [
+          "post"
+        ],
+        "description": "포스트 메인페이지 엔드포인트",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/post/register": {
+      "post": {
+        "tags": [
+          "post"
+        ],
+        "description": "포스트 등록용 엔드포인트",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/sign-in": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "description": "유저 회원가입 엔드포인트",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "유저 정보",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/AddUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "회원가입에 성공했습니다!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "example": "any"
+                  },
+                  "password": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
           }
         }
       }
     },
     "/userList": {
       "get": {
-        "description": "",
+        "tags": [
+          "auth"
+        ],
+        "description": "유저 리스트 조회 엔드포인트",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/register": {
+      "post": {
+        "tags": [
+          "post"
+        ],
+        "description": "포스트 등록용 엔드포인트",
         "parameters": [],
         "responses": {
           "200": {
@@ -46,6 +227,99 @@
     }
   },
   "components": {
+    "schemas": {
+      "Parents": {
+        "type": "object",
+        "properties": {
+          "father": {
+            "type": "string",
+            "example": "Simon Doe"
+          },
+          "mother": {
+            "type": "string",
+            "example": "Marie Doe"
+          }
+        },
+        "xml": {
+          "name": "Parents"
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Jhon Doe"
+          },
+          "age": {
+            "type": "number",
+            "example": 29
+          },
+          "parents": {
+            "xml": {
+              "name": "parents"
+            },
+            "$ref": "#/components/schemas/Parents"
+          },
+          "diplomas": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "school": {
+                  "type": "string",
+                  "example": "XYZ University"
+                },
+                "year": {
+                  "type": "number",
+                  "example": 2020
+                },
+                "completed": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "internship": {
+                  "type": "object",
+                  "properties": {
+                    "hours": {
+                      "type": "number",
+                      "example": 290
+                    },
+                    "location": {
+                      "type": "string",
+                      "example": "XYZ Company"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "xml": {
+          "name": "User"
+        }
+      },
+      "AddUser": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "example": "haechan"
+          },
+          "password": {
+            "type": "string",
+            "example": "1234"
+          }
+        },
+        "required": [
+          "username",
+          "password"
+        ],
+        "xml": {
+          "name": "AddUser"
+        }
+      }
+    },
     "securitySchemes": {
       "bearerAuth": {
         "type": "http",
